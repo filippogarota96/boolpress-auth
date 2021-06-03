@@ -19,4 +19,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+Route::prefix('user')->name('user.')->namespace('user')->group(function () {
+    Route::get('/', 'HomeController@index')->name('home');
+//     Route::resource('posts', 'PostController');
+//     Route::resource('tags', 'TagController');
+//     Route::delete('comments/{comment}', 'CommentController@destroy')->name('comments.destroy');
+});
