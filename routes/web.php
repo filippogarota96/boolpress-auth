@@ -13,16 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Area pubblica
 Route::get('/', function () {
     return view('welcome');
 });
 
 Auth::routes();
 
-
-Route::prefix('user')->name('user.')->namespace('user')->group(function () {
-    Route::get('/', 'HomeController@index')->name('home');
-//     Route::resource('posts', 'PostController');
+// aera privata
+Route::prefix('user')->name('user.')->namespace('User')->middleware('auth')->group(function () {
+ Route::resource('posts', 'PostController');
 //     Route::resource('tags', 'TagController');
 //     Route::delete('comments/{comment}', 'CommentController@destroy')->name('comments.destroy');
 });
